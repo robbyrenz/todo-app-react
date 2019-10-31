@@ -3,7 +3,12 @@ import React from "react"
 function ListItem(props) {
     return (
         <div>
-            <li>{props.item}</li>
+            <input
+                type="checkbox"
+                checked={props.checked}
+                onChange={() => props.handleChecked(props.item)}
+            />
+            {props.item}
         </div>
     )
 }
