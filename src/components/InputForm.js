@@ -43,7 +43,7 @@ class InputForm extends React.Component {
         // return the opposite of the check value
         this.setState(prevState => {
             const newItems = prevState.items.map(item => {
-                if (item.item === this.item)
+                if (item.item === this.item) // if the value of checkbox match to what user was clicking...
                     item.tick = !item.tick
                 return item
             })
@@ -61,7 +61,7 @@ class InputForm extends React.Component {
                 handleChecked={this.handleChecked}
             />)
         return (
-            <div>
+            <div className="notepad">
                 {listItems}
                 <form onSubmit={this.handleSubmit}>
                     <input
