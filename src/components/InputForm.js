@@ -7,10 +7,11 @@ class InputForm extends React.Component {
         super()
         this.state = {
             item: "",
-            items: ['Hello', 'World!']
+            items: []
         }
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
+        this.pushAndReturnArray = this.pushAndReturnArray.bind(this)
     }
 
     handleChange(e) {
@@ -20,14 +21,21 @@ class InputForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault()
-        // this.setState({ items: this.state.items.push(this.state.item) })
+        if (this.state.item === "")  // don't let the user add an empty string
+            return
         this.setState(prevState => {
             return {
                 item: "",
-                items: prevState.items.push(prevState.item)
+                items: this.pushAndReturnArray(prevState.items, prevState.item)
             }
         })
-        console.log(this.state.items)
+        // console.log(this.state.items) TODO: this seems to be one step behind...why?
+    }
+
+    pushAndReturnArray(arr, value) {
+        // push method does not return an array!!! I was having a lot of trouble with that!
+        arr.push(value)
+        return arr
     }
     
     render() {
