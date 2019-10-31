@@ -35,7 +35,7 @@ class InputForm extends React.Component {
 
     pushAndReturnArray(arr, value) {
         // push method does not return an array!!! I was having a lot of trouble with that!
-        arr.push({"value": value, checked: false}) // push in an object
+        arr.push({item: value, checked: false}) // push in an object
         return arr
     }
 
@@ -43,7 +43,7 @@ class InputForm extends React.Component {
         // return the opposite of the check value
         this.setState(prevState => {
             const newItems = prevState.items.map(item => {
-                if (item.value === item)
+                if (item.value === this.item)
                     item.checked = !item.checked
                 return item
             })
@@ -54,8 +54,8 @@ class InputForm extends React.Component {
     render() {
         const listItems = this.state.items.map(item =>
             <ListItem 
-                item={item}
-                checked={false}
+                item={item.item}
+                checked={item.checked}
                 handleChecked={this.handleChecked}
             />)
         return (
