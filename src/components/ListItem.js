@@ -5,7 +5,7 @@ function ListItem(props) {
         <div>
             <input
                 type="checkbox"
-                checked={props.checked}
+                checked={props.tick}
                 onChange={() => props.handleChecked(props.item)}
             />
             {props.item}

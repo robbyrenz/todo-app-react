@@ -22,8 +22,8 @@ class InputForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault()
-        if (this.state.item === "")  // don't let the user add an empty string
-            return
+        if (this.state.item === "")
+            return // don't let the user add an empty string
         this.setState(prevState => {
             return {
                 item: "",
@@ -35,7 +35,7 @@ class InputForm extends React.Component {
 
     pushAndReturnArray(arr, value) {
         // push method does not return an array!!! I was having a lot of trouble with that!
-        arr.push({item: value, checked: false}) // push in an object
+        arr.push({item: value, tick: false}) // push in an object
         return arr
     }
 
@@ -43,11 +43,13 @@ class InputForm extends React.Component {
         // return the opposite of the check value
         this.setState(prevState => {
             const newItems = prevState.items.map(item => {
-                if (item.value === this.item)
-                    item.checked = !item.checked
+                if (item.item === this.item)
+                    item.tick = !item.tick
                 return item
             })
-            return newItems
+            return {
+                items: newItems
+            }
         })
     }
     
@@ -55,7 +57,7 @@ class InputForm extends React.Component {
         const listItems = this.state.items.map(item =>
             <ListItem 
                 item={item.item}
-                checked={item.checked}
+                checked={item.tick}
                 handleChecked={this.handleChecked}
             />)
         return (
