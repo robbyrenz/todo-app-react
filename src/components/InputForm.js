@@ -7,16 +7,34 @@ class InputForm extends React.Component {
         super()
         this.state = {
             item: "",
-            items: []
+            items: ['Hello', 'World!']
         }
-        // this.handleChange = this.handleChange.bind(this)
-        // this.handleSubmit = this.handleSubmit.bind(this)
+        this.handleChange = this.handleChange.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)
+    }
+
+    handleChange(e) {
+        const { name, value } = e.target
+        this.setState({ [name]: value })
+    }
+
+    handleSubmit(e) {
+        e.preventDefault()
+        // this.setState({ items: this.state.items.push(this.state.item) })
+        this.setState(prevState => {
+            return {
+                item: "",
+                items: prevState.items.push(prevState.item)
+            }
+        })
+        console.log(this.state.items)
     }
     
     render() {
         const listItems = this.state.items.map(item => <ListItem item={item} />)
         return (
             <div>
+                {listItems}
                 <form onSubmit={this.handleSubmit}>
                     <input
                         type="text"
