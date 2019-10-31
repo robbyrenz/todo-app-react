@@ -1,9 +1,13 @@
 import React from "react"
 
+import Header from "./components/Header"
+import InputForm from "./components/InputForm"
+
 function App() {
     return (
         <div>
-            <h1>Hello World!</h1>
+            <Header title={"Todo App"} subtitle={"Welcome!"} />
+            <InputForm />
         </div>
     )
 }

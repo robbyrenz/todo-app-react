@@ -9,11 +9,12 @@ class InputForm extends React.Component {
             item: "",
             items: []
         }
-        this.handleChange = this.handleChange.bind(this)
-        this.handleSubmit = this.handleSubmit.bind(this)
+        // this.handleChange = this.handleChange.bind(this)
+        // this.handleSubmit = this.handleSubmit.bind(this)
     }
     
     render() {
+        const listItems = this.state.items.map(item => <ListItem item={item} />)
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
