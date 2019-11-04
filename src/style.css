@@ -48,7 +48,7 @@ button {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
 }
 
 button {
@@ -78,4 +78,7 @@ button:hover {
 label > p {
     font-size: 1.5em;
     padding: 0.5em 1.5em 0.5em 0;
+    border-bottom: 2px solid black;
+    width: 100%;
+    display: inline-block;
 }

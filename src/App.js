@@ -6,7 +6,7 @@ import InputForm from "./components/InputForm"
 function App() {
     return (
         <div>
-            <Header title={"Todo App"} subtitle={"Welcome!"} />
+            {/* <Header title={"Todo App"} subtitle={"Welcome!"} /> */}
             <InputForm />
         </div>
     )
