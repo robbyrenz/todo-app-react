@@ -7,12 +7,14 @@ class InputForm extends React.Component {
         super()
         this.state = {
             item: "",
-            items: []
+            items: [],
+            id: 0
         }
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
         this.pushAndReturnArray = this.pushAndReturnArray.bind(this)
         this.handleChecked = this.handleChecked.bind(this)
+        this.incrementId = this.incrementId.bind(this)
     }
 
     handleChange(e) {
@@ -35,15 +37,38 @@ class InputForm extends React.Component {
 
     pushAndReturnArray(arr, value) {
         // push method does not return an array!!! I was having a lot of trouble with that!
-        arr.push({item: value, tick: false}) // push in an object
+        arr.push({item: value, tick: false, id: this.state.id}) // push in an object
+        this.incrementId()
         return arr
     }
 
-    handleChecked(item) {
-        // return the opposite of the check value
+    incrementId() {
         this.setState(prevState => {
-            const newItems = prevState.items.map(item => {
-                if (item.item === this.item) // if the value of checkbox match to what user was clicking...
+            return {
+                id: prevState.id + 1
+            }
+        })
+    }
+
+    // the below function is not working!!!
+    // handleChecked(item) {
+    //     // return the opposite of the check value
+    //     this.setState(prevState => {
+    //         const newItems = prevState.items.map(item => {
+    //             if (item.item === this.item) // if the value of checkbox match to what user was clicking... TODO: something is wrong here in this particular line
+    //                 item.tick = !item.tick
+    //             return item
+    //         })
+    //         return {
+    //             items: newItems
+    //         }
+    //     })
+    // }
+
+    handleChecked(id) {
+        this.setState(prevState => {
+            const newItems = this.state.items.map(item => {
+                if (item.id === id)
                     item.tick = !item.tick
                 return item
             })
@@ -56,9 +81,11 @@ class InputForm extends React.Component {
     render() {
         const listItems = this.state.items.map(item =>
             <ListItem 
-                item={item.item}
-                checked={item.tick}
+                item={item}
+                // checked={item.tick}
+                // tick={item.tick}
                 handleChecked={this.handleChecked}
+                key={item.id}
             />)
         return (
             <div className="notepad">
