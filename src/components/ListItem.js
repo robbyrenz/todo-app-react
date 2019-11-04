@@ -13,8 +13,11 @@ function ListItem(props) {
                 type="checkbox"
                 checked={props.item.tick}
                 onChange={() => props.handleChecked(props.item.id)}
+                id={props.item.id}
             />
-            <p style={props.item.tick ? completedStyle : null}>{props.item.item}</p>
+            <label htmlFor={props.item.id}> 
+                <p style={props.item.tick ? completedStyle : null}>{props.item.item}</p>
+            </label>
             {/* <p style={completedStyle}>{props.item}</p> */}
         </div>
     )
