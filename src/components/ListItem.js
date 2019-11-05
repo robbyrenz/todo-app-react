@@ -3,7 +3,8 @@ import React from "react"
 function ListItem(props) {
     const completedStyle = {
         fontStyle: "italic",
-        color: "#cdcdcd",
+        // color: "#cdcdcd",
+		color: "blue",
         textDecoration: "line-through"
     }
 
